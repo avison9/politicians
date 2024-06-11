@@ -1,0 +1,41 @@
+
+services:  
+  postgres:
+    image: postgres:latest
+    container_name: postgres-server
+    environment:
+      POSTGRES_DB: my_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+ 
+  mongodb:
+    image: mongo:4.2
+    container_name: mongo-server
+    ports:
+      - "27017:27017" 
+    volumes:
+      - mongo_data:/data/db
+
+
+  web:
+    container_name: web-server
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - media:/app/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+      - postgres
+
+volumes:
+  postgres-data:
+  mongo_data:
+  media:
