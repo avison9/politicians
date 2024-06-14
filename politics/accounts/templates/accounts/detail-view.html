@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail View</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .detail-card {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin: 0 auto;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .image-box {
+            width: 100px;
+            height: 100px;
+            background-color: #ddd;
+            float: left;
+            margin-right: 20px;
+        }
+        .name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 0;
+        }
+        .last-name {
+            font-weight: normal;
+        }
+        .position,
+        .previous-positions,
+        .court-case-title,
+        .court-case-verdict,
+        .attached-files {
+            margin-top: 10px;
+        }
+        .attached-files a {
+            display: block;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .attached-files a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="detail-card">
+        <div class="image-box"></div>
+        <div class="info">
+            <div class="name">
+                John <span class="last-name">Doe</span>
+            </div>
+            <div class="position">
+                Current Position: Senior Developer
+            </div>
+            <div class="previous-positions">
+                Previous Positions:
+                <ul>
+                    <li>Junior Developer</li>
+                    <li>Intern</li>
+                </ul>
+            </div>
+            <div class="court-case-title">
+                Court Case Title: Example Court Case Title
+            </div>
+            <div class="court-case-verdict">
+                Court Case Verdict: Guilty
+            </div>
+            <div class="attached-files">
+                Attached Files:
+                <a href="file1.pdf" download>Download File 1</a>
+                <a href="file2.pdf" download>Download File 2</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
