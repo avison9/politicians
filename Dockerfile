@@ -11,6 +11,6 @@ COPY . .
 
 RUN mkdir -p /app/media
 
-WORKDIR /app//
+WORKDIR /app/politics/
 
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
