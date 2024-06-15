@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+# from .models import Profile
 
 
 
@@ -14,10 +15,13 @@ class RegisterForm(forms.ModelForm):
 
     password = forms.CharField(widget=forms.PasswordInput)
     password_2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+    
+    # username = forms.CharField(max_length=100)
 
     class Meta:
         model = User
         fields = ['email', 'username']
+    
 
     def clean_email(self):
         '''
@@ -30,17 +34,17 @@ class RegisterForm(forms.ModelForm):
         return email
     
     
-    def clean_username(self):
+    # def clean_username(self):
          
-        '''
-        Verify email is available.
-        '''
+    #     '''
+    #     Verify username is available.
+    #     '''
 
-        username = self.cleaned_data.get('username')
-        usr = User.objects.filter(username=username)
-        if usr.exists():
-            raise forms.ValidationError("this username is taken")
-        return username
+    #     username = self.cleaned_data.get('username')
+    #     usr = User.objects.filter(username=username)
+    #     if usr.exists():
+    #         raise forms.ValidationError("this username is taken")
+    #     return username
 
 
 
@@ -109,5 +113,6 @@ class UserAdminChangeForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.EmailField(label= 'email')
     password = forms.CharField(widget=forms.PasswordInput)
+
 
 

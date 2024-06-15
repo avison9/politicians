@@ -13,11 +13,12 @@
 </head>
 <body>
     <div class="container text-center mt-5">
-        <h1>Welcome to Our Website</h1>
+        <h1>Welcome to Politician Portfolio Site</h1>
+        <p>...a place where all politicians history in office is been published by the people for the public to follow!</p>
         <p>Please choose an option below:</p>
         <div class="mt-4">
-            <a href="login.html" class="btn btn-primary btn-lg mx-2"><i class="fas fa-sign-in-alt"></i> Login</a>
-            <a href="registration.html" class="btn btn-secondary btn-lg mx-2"><i class="fas fa-user-plus"></i> Register</a>
+            <a href="{% url 'home' %}" class="btn btn-primary btn-lg mx-2"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="{% url 'register' %}" class="btn btn-secondary btn-lg mx-2"><i class="fas fa-user-plus"></i> Register</a>
         </div>
     </div>
 
