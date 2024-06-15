@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+# from django_countries.fields import CountryField
 
 
 class UserManager(BaseUserManager):
@@ -53,11 +54,11 @@ class User (AbstractBaseUser):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-    USERNAME_FIELD =  'email'
+    USERNAME_FIELD =  'username'
 
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['email']
 
-    object = UserManager()
+    objects = UserManager()
 
     def __str__(self) -> str:
         return self.email
@@ -87,5 +88,20 @@ class User (AbstractBaseUser):
         return self.admin
 
 
-# class Profile(models.Model):
-#     user = models.OneToOneField(User)
+# class Profile(User):
+#     genders = [
+#         ('male','MALE'),
+#         ('female','FEMALE'),
+#         ('others', 'OTHERS'),
+#         ('prefer not to say','PERFER NOT TO SAY'),]
+    
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     first_name = models.CharField(max_length=250)
+#     last_name = models.CharField(max_length=250)
+#     dob = models.DateField()
+#     gender = models.CharField(max_length=100, choices=genders)
+    # country = CountryField()
+
+
+    
+
