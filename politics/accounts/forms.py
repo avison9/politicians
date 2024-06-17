@@ -1,13 +1,15 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-# from .models import Profile
+from .models import Profile
 
 
 
 User = get_user_model()
 
-class RegisterForm(forms.ModelForm):
+
+
+class UserRegisterForm(forms.ModelForm):
     """
     The default 
 
@@ -20,7 +22,7 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['email', 'username']
+        fields = ['email', 'username','first_name','last_name','country',]
     
 
     def clean_email(self):
@@ -60,6 +62,41 @@ class RegisterForm(forms.ModelForm):
         return cleaned_data
 
 
+
+class ProfileUpdateForm(forms.ModelForm):
+    """
+    The default 
+    """
+
+    class Meta:
+        model = Profile
+        fields = ['dob','gender']
+
+
+class UserUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['email', 'username', 'first_name','last_name','country']
+
+    def clean_username(self):
+         
+        '''
+        Verify username is available.
+        '''
+
+        username = self.cleaned_data.get('username')
+        usr = User.objects.filter(username=username)
+        if usr.exists():
+            raise forms.ValidationError("this username is already taken")
+        return username
+    
+
+
+
+
+
+
 class UserAdminCreationForm(forms.ModelForm):
     """
     A form for creating new users. Includes all the required
@@ -70,7 +107,7 @@ class UserAdminCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['email', 'username']
+        fields = ['email', 'username', 'first_name','last_name','country',]
 
     def clean(self):
         '''
@@ -101,7 +138,7 @@ class UserAdminChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['email', 'username', 'password', 'active', 'admin']
+        fields = ['first_name','last_name','country','email', 'username', 'password', 'active', 'admin']
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -113,6 +150,8 @@ class UserAdminChangeForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.EmailField(label= 'email')
     password = forms.CharField(widget=forms.PasswordInput)
+
+
 
 
 

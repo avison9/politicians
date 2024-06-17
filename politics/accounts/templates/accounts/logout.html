@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Logout</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="styles.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container text-center mt-5">
-        <h1>Welcome to Politician Portfolio Site</h1>
-        <p>...a place where all politicians history in office is been published by the people for the public to follow!</p>
-        <p>Please choose an option below:</p>
-        <div class="mt-4">
-            <a href="{% url 'login' %}" class="btn btn-primary btn-lg mx-2"><i class="fas fa-sign-in-alt"></i> Login</a>
-            <a href="{% url 'register' %}" class="btn btn-secondary btn-lg mx-2"><i class="fas fa-user-plus"></i> Register</a>
-        </div>
+        <h2>You have been logged out</h2>
+        <p>Thank you for using our service. <a href="login.html">Login again</a></p>
     </div>
 
     <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.amazonaws.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
