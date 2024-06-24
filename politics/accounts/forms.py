@@ -148,8 +148,9 @@ class UserAdminChangeForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.EmailField(label= 'email')
-    password = forms.CharField(widget=forms.PasswordInput)
+    # username = forms.EmailField(label= 'email')
+    username = forms.CharField(label= 'username')
+    password = forms.CharField(widget=forms.PasswordInput, label='password')
 
 
 

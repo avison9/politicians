@@ -49,17 +49,17 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item nav-item-profile">
                     <img src="https://via.placeholder.com/40" alt="Profile Avatar" class="profile-avatar">
-                    <a class="nav-link" href="edit_profile.html"><i class="fas fa-user-edit"></i> Edit Profile</a>
+                    <a class="nav-link" href="{% url 'user_update' %}"><i class="fas fa-user-edit"></i> Edit Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <a class="nav-link" href="{%url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <div class="container mt-5">
-        <h2>Welcome to Your Dashboard</h2>
+        <h3>Hello {{ user.first_name }}, Welcome to Your Dashboard</h3>
         <p>This is your dashboard where you can see an overview of your activities.</p>
         <!-- Add more dashboard content here -->
     </div>

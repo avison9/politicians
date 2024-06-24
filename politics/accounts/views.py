@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .forms import UserRegisterForm, LoginForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import auth
-from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth import authenticate, login as auth_login, get_user_model
 
 
 # Home page
@@ -22,7 +22,7 @@ def register(request):
 
             usr_cred.save()            
 
-            # return redirect('home')
+            return redirect('login')
 
     context = {'usercred': usr_cred}
 
@@ -72,15 +72,36 @@ def login(request):
 
             if usr is not None:
 
-                login(request, usr)
+                auth_login(request, usr)
 
-                return redirect('home')
+                return redirect('dashboard')
 
     context = {
         'login': form
     }
 
     return render(request, 'accounts/login.html', context)
+
+
+
+#dashboard view
+@login_required(login_url='login')
+def dashboard(request):
+
+    return render(request,'accounts/dashboard.html')
+
+
+def logout(request):
+
+    auth.logout(request)
+
+    return redirect('login')
+
+
+
+
+    
+
 
 
 
