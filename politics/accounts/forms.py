@@ -35,20 +35,6 @@ class UserRegisterForm(forms.ModelForm):
             raise forms.ValidationError("this email is taken")
         return email
     
-    
-    # def clean_username(self):
-         
-    #     '''
-    #     Verify username is available.
-    #     '''
-
-    #     username = self.cleaned_data.get('username')
-    #     usr = User.objects.filter(username=username)
-    #     if usr.exists():
-    #         raise forms.ValidationError("this username is taken")
-    #     return username
-
-
 
     def clean(self):
         '''
@@ -60,6 +46,17 @@ class UserRegisterForm(forms.ModelForm):
         if password is not None and password != password_2:
             self.add_error("password_2", "Your passwords must match")
         return cleaned_data
+    
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user
+
+
 
 
 
@@ -70,7 +67,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['dob','gender']
+        fields = ['dob','gender', 'bio','avatar']
 
 
 class UserUpdateForm(forms.ModelForm):
@@ -148,7 +145,6 @@ class UserAdminChangeForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    # username = forms.EmailField(label= 'email')
     username = forms.CharField(label= 'username')
     password = forms.CharField(widget=forms.PasswordInput, label='password')
 
