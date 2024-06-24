@@ -33,6 +33,10 @@ def register(request):
 #Updating a user's detail
 @login_required
 def edit_form(request):
+
+    user_edit_form = UserUpdateForm(instance=request.user)
+    profile_edit_form = ProfileUpdateForm(instance=request.user.profile)
+
     if request.method == 'POST':
         user_edit_form = UserUpdateForm(instance=request.user, data=request.POST)
         profile_edit_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
