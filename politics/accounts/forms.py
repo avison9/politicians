@@ -70,7 +70,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['dob','gender']
+        fields = ['dob','gender', 'bio','avatar']
 
 
 class UserUpdateForm(forms.ModelForm):
