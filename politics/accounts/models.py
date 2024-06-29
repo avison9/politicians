@@ -3,6 +3,9 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.core.exceptions import ValidationError
+from django.core.files.images import get_image_dimensions
+
 # from django_countries.fields import CountryField
 
 
@@ -116,7 +119,7 @@ class User (AbstractBaseUser):
         return self.admin
 
 
-def usr_file_path(instance, filname):
+def usr_file_path(instance, filename):
     return 'users/avatars/{0}/{1}'.format(instance.user.id, filename)
 
 class Profile(models.Model):
@@ -131,6 +134,17 @@ class Profile(models.Model):
     gender = models.CharField(max_length=100, choices=genders, blank=True)
     bio = models.TextField(max_length=500, blank=True)
     avatar = models.ImageField(upload_to=usr_file_path, default='user/avatar.jpg')
+
+
+    def clean(self):
+        if not self.avatar:
+            raise ValidationError('x')
+        else:
+            w, h = get_image_dimensions(self.avatar)
+            if w != 40:
+                w = 40
+            if h != 40:
+                h = 40
     
 
     def __str__(self):
