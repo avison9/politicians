@@ -3,6 +3,10 @@ from .forms import UserRegisterForm, LoginForm, ProfileUpdateForm, UserUpdateFor
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login as auth_login, get_user_model
+from .models import Profile
+
+
+User = get_user_model()
 
 
 # Home page
@@ -44,9 +48,7 @@ def edit_form(request):
         if user_edit_form.is_valid() and profile_edit_form.is_valid():
             user_edit_form.save()
             profile_edit_form.save()
-        else:
-            user_edit_form = UserUpdateForm(instance=request.user)
-            profile_edit_form = ProfileUpdateForm(instance=request.user.profile)
+
 
     context = {
         'user_edit_form': user_edit_form,
@@ -65,9 +67,6 @@ def login(request):
         form = LoginForm(request.POST or None)
 
         if form.is_valid():
-
-            # username = request.POST.get('username')
-            # password = request.POST.get('password')
 
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
@@ -100,6 +99,20 @@ def logout(request):
     auth.logout(request)
 
     return render(request, 'accounts/logout.html')
+
+
+@login_required
+def avatar(request):
+
+    user = User.objects.filter(username=request.user).first()
+
+    avatar = Profile.objects.filter(user=user)
+
+    context ={
+        'avatar' : avatar
+    }
+    return context
+
 
 
 

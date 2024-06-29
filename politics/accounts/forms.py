@@ -74,19 +74,23 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['email', 'username', 'first_name','last_name','country']
+        fields = ['first_name','last_name','country']
 
-    def clean_username(self):
+    # def clean_username(self):
          
-        '''
-        Verify username is available.
-        '''
+    #     '''
+    #     Verify username is available.
+    #     '''
 
-        username = self.cleaned_data.get('username')
-        usr = User.objects.filter(username=username)
-        if usr.exists():
-            raise forms.ValidationError("this username is already taken")
-        return username
+    #     username = self.cleaned_data.get('username')
+    #     usr = User.objects.filter(username=username)
+    #     print(usr)
+    #     if username == usr:
+    #         return username
+                
+    #     elif username != usr and usr.exists():
+    #         raise forms.ValidationError("this username is already taken")
+        
     
 
 
